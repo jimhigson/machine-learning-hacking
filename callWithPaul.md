@@ -13,6 +13,8 @@ Download from internet for mac/64 bit etc
 
 * `~/opt/anaconda3/condabin/conda init fish` - to set up my config.fish to show conda base path and have conda in path
 
+`conda config --set changeps1 False` removes the shell prompt stuff (since starship gives this anyway)
+`conda config --set auto_activate_base False` don't open base by default
 
 Creating/activating a conda environment
 ============================
@@ -23,6 +25,14 @@ Environments are stored in: `/Users/jimhigson/opt/anaconda3/envs/$env_name` - th
 
 > ` ~/opt/anaconda3/condabin/conda create -n machine_learning python=3.7 ipython pandas numpy`
 > `conda install jupyter # too add new libs later could have added in environment create above too`
+
+conda install keras - Paul didn't do this - why not and where did it get keras from then?
+>   message to Paul to clarify
+>   one question for when you have a moment - I notice looking back at my notes that we didn't run
+>   'conda install keras' but the jupyter notebook is importing keras - bit confused how this is
+>   possible if we didn't put it into the environment
+
+>   Paul doesn't know either. Just accept it for now.
 
 ```sh
 jimhigson@budapest ~/dev> ~/opt/anaconda3/condabin/conda info --envs # ask to list the envs
@@ -40,14 +50,16 @@ Jupyter notebook creation and use
 `which ipython` will now point to the proper python version in that conda environment (~/opt/anaconda3/envs/machine_learning/bin/ipython) since envionment included ipython when created
 
 ipython = interactive python (normal python still has a REPL) but this is interactive-er with syntax highlighting on the console
-    * ipython originally under jupyter project (why it can create jupyter kernels?)
+    * Jupyter originally called 'ipython notebook'
     * ipython can be connected to jupyter via an ipython kernel, which we must create
     * all of this is possible because we installed ipython into our conda environment, and have that conda env activated
+    * ie, jupyter notebooks have extension '.ipynb' - as in ipython notebook. J and iP Very closely related.
+    * the kernel is the interactive python session that a notebook runs in. Multiple notebooks have multiple instances of the kernel, ie, if you declare a var in python, it's the kernel that holds that var
 
 need to create a kernel for jupyter notebooks (connector between ipython on jupyter webpage)
 `Jupyter kernels live in: /Users/jimhigson/Library/Jupyter/kernels/machine_learning`
 
-> `jupyter-notebook` on cli to start jupyter (go to dir first)
+> `jupyter-notebook` on cli to start jupyter (go to dir first) - will also open a browser
 
 ```sh
 ipython kernel install --name machine_learning --user # install it for the user (not globally)
@@ -96,3 +108,27 @@ Scikit learn and Keras both come with some toy datasets to practice on
 
 Read Keras examples CFAR 10 CNN (finding out house numbers)
     - a fairly invoced Conv. ANN
+
+Own the Libs
+============
+
+[https://www.opentechguides.com/how-to/article/dataanalytics/179/jupyter-notebook-pandas.html]
+*Pandas* provide fast, flexible and easy to use data structures for data analysis
+    * pandas is for tabular data (called a dataframe) with rows and cols
+    * load from sql db, json, csv etc
+    * can get subsets, maniupulate it etc
+    * pandas supports matplotlib (support is baked in) for graphs
+
+*Matplotlib* is used visualize data using charts such as bar charts, line plots, scatter plots and many more.
+
+*Scikit*
+    * for the science, in a kit
+    * http://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html - makes data like on a scattergraph
+
+*pydot*
+    is an interface to Graphviz
+    can parse and dump into the DOT language used by GraphViz,
+    is written in pure Python,
+
+*Graphviz*
+    * Graphviz is open source graph visualization software
