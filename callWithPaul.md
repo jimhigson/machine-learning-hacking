@@ -132,3 +132,11 @@ Own the Libs
 
 *Graphviz*
     * Graphviz is open source graph visualization software
+
+*jupytext*
+    * https://github.com/mwouts/jupytext
+
+*nbdev*
+    * bridges IDEs and notebooks
+    * https://www.fast.ai/2019/12/02/nbdev/
+
