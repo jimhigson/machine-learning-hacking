@@ -35,7 +35,7 @@ import numpy as np
 
 ```python
 trainingDataSize = 10000
-epochs = 15
+epochs = 50
 ```
 
 ```python
