@@ -45,27 +45,32 @@ Ynoisy = Y + np.random.normal( scale = 3, size=trainingDataSize )
 
 Y
 
-Ynoisy
+print(Ynoisy)
+
+# python can do addition of non-primatives, which is why some custom loss functions
+# can be expressed using /-+ etc
+np.array([1,2,3]) + (np.array([1,2,3]) / 4)
 
 #https://keras.io/losses/
 def lossFuncLikeMSE(yActual, yPred):
     customLossValue = kb.mean(kb.sum(kb.square((yActual - yPred)/10)))
     return customLossValue;
 
-# the loss function can handle singles:
-lossFuncLikeMSE(2,2)
+# the loss function can handle single numbers, but more likely to be given arrays:
+lossFuncLikeMSE(2,2).numpy()
+lossFuncLikeMSE(2,10).numpy()
 
 # +
 # the loss function can handle multiples:
 
-ktrue = kb.variable(value=np.array([1,2,3,4]), dtype='float64', name='example_var')
-kpredGood = kb.variable(value=np.array([1,2.1,2.9,4]), dtype='float64', name='example_var')
-kpredBad = kb.variable(value=np.array([1,200,3,4]), dtype='float64', name='example_var')
+ktrue = kb.variable(value=np.array([1,2,3,4]), dtype='float64', name='true')
+kpredGood = kb.variable(value=np.array([1,2.1,2.9,4]), dtype='float64', name='pred_good')
+kpredBad = kb.variable(value=np.array([1,200,3,4]), dtype='float64', name='pred_bad')
 # -
 
-lossFuncLikeMSE(ktrue,kpredGood)
+lossFuncLikeMSE(ktrue,kpredGood).numpy()
 
-lossFuncLikeMSE(ktrue,kpredBad)
+lossFuncLikeMSE(ktrue,kpredBad).numpy()
 
 model = Sequential([
     #Flatten(), # input_shape=(2,)
@@ -99,3 +104,5 @@ model.predict(np.array([[2,2]]))
 model.predict(np.array([[100,-250]]))
 
 model.predict(np.array([[10000,-2500]]))
+
+model.predict(np.array([[1,1]]))
